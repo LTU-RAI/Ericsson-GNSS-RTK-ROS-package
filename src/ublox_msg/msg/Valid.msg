@@ -1,0 +1,4 @@
+uint8 valid_date
+uint8 valid_time
+uint8 fully_resolved
+uint8 valid_mag

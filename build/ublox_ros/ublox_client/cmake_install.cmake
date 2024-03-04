@@ -1,0 +1,57 @@
+# Install script for directory: /home/emanuele/catkin_ws/src/ublox_ros/ublox_client
+
+# Set the install prefix
+if(NOT DEFINED CMAKE_INSTALL_PREFIX)
+  set(CMAKE_INSTALL_PREFIX "/home/emanuele/catkin_ws/install")
+endif()
+string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
+
+# Set the install configuration name.
+if(NOT DEFINED CMAKE_INSTALL_CONFIG_NAME)
+  if(BUILD_TYPE)
+    string(REGEX REPLACE "^[^A-Za-z0-9_]+" ""
+           CMAKE_INSTALL_CONFIG_NAME "${BUILD_TYPE}")
+  else()
+    set(CMAKE_INSTALL_CONFIG_NAME "")
+  endif()
+  message(STATUS "Install configuration: \"${CMAKE_INSTALL_CONFIG_NAME}\"")
+endif()
+
+# Set the component getting installed.
+if(NOT CMAKE_INSTALL_COMPONENT)
+  if(COMPONENT)
+    message(STATUS "Install component: \"${COMPONENT}\"")
+    set(CMAKE_INSTALL_COMPONENT "${COMPONENT}")
+  else()
+    set(CMAKE_INSTALL_COMPONENT)
+  endif()
+endif()
+
+# Install shared libraries without execute permission?
+if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
+  set(CMAKE_INSTALL_SO_NO_EXE "1")
+endif()
+
+# Is this installation the result of a crosscompile?
+if(NOT DEFINED CMAKE_CROSSCOMPILING)
+  set(CMAKE_CROSSCOMPILING "FALSE")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for each subdirectory.
+  include("/home/emanuele/catkin_ws/build/ublox_ros/ublox_client/libs/cmake_install.cmake")
+  include("/home/emanuele/catkin_ws/build/ublox_ros/ublox_client/interface/cmake_install.cmake")
+  include("/home/emanuele/catkin_ws/build/ublox_ros/ublox_client/asn.1/cmake_install.cmake")
+  include("/home/emanuele/catkin_ws/build/ublox_ros/ublox_client/generator/rtcm/cmake_install.cmake")
+  include("/home/emanuele/catkin_ws/build/ublox_ros/ublox_client/generator/spartn/cmake_install.cmake")
+  include("/home/emanuele/catkin_ws/build/ublox_ros/ublox_client/generator/spartn2/cmake_install.cmake")
+  include("/home/emanuele/catkin_ws/build/ublox_ros/ublox_client/receiver/ublox/cmake_install.cmake")
+  include("/home/emanuele/catkin_ws/build/ublox_ros/ublox_client/receiver/nmea/cmake_install.cmake")
+  include("/home/emanuele/catkin_ws/build/ublox_ros/ublox_client/examples/ublox/cmake_install.cmake")
+  include("/home/emanuele/catkin_ws/build/ublox_ros/ublox_client/examples/nmea/cmake_install.cmake")
+  include("/home/emanuele/catkin_ws/build/ublox_ros/ublox_client/examples/lpp/cmake_install.cmake")
+  include("/home/emanuele/catkin_ws/build/ublox_ros/ublox_client/examples/lpp2spartn/cmake_install.cmake")
+  include("/home/emanuele/catkin_ws/build/ublox_ros/ublox_client/examples/ntrip/cmake_install.cmake")
+
+endif()
+

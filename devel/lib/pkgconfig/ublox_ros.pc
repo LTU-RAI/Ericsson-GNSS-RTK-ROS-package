@@ -1,0 +1,8 @@
+prefix=/home/emanuele/catkin_ws/devel
+
+Name: ublox_ros
+Description: Description of ublox_ros
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: ublox_msg

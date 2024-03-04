@@ -1,0 +1,3 @@
+uint8 confirmed_avai
+uint8 confirmed_date
+uint8 confirmed_time
