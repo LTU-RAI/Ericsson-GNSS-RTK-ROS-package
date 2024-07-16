@@ -1,6 +1,6 @@
 # GNSS RTK ROS1 Package for Ublox F9P with Ericsson stations
 
-Authors [Emanuele Pagliari](https://github.com/Palia95)[Yosri Fersi](https://github.com/Yosri-Fersi)
+Authors: [Emanuele Pagliari](https://github.com/Palia95) and  [Yosri Fersi](https://github.com/Yosri-Fersi)
 
 The following ROS1 package enables the usage of GNSS RTK with GNSS corrections provided by the Ericsson base stations available in Sweden. The package has been built to be used with the Ublox F9P RTK GNSS receiver and needs an internet connection in order to reach the base stations to retrieve the corrections.
 
@@ -18,7 +18,7 @@ An generic overview of GNSS RTK architecture is depicted in the following scheme
 
 ## Hardware Requirements
 
-In order to use the GNSS RTK, it is needed a suitable GNSS receiver, preferably based on the Ublox F9P. In our lab, the [ArduSimple RTK2B] (https://www.ardusimple.com/product/simplertk2b/?attribute_pa_header-options=without-headers) with an [Eliptical Dual Band antenna](https://www.ardusimple.com/product/helical-antenna/) has been used. The module must be connected through the USB serial port to the companion computer onboard of the target platform.
+In order to use the GNSS RTK, it is needed a suitable GNSS receiver, preferably based on the Ublox F9P. In our lab, the [ArduSimple RTK2B](https://www.ardusimple.com/product/simplertk2b/?attribute_pa_header-options=without-headers) with an [Eliptical Dual Band antenna](https://www.ardusimple.com/product/helical-antenna/) has been used. The module must be connected through the USB serial port to the companion computer onboard of the target platform.
 
 In order to get the GNSS corrections, the companion computer must be connected to internet. Any connection is fine, it can be Wi-Fi, 4G or even 5G. In a mobile platform, it is warmly suggested to use a 4G/5G plug and play modem.
 
@@ -31,7 +31,7 @@ Finally, the antenna of the GNSS receiver must be located in a obstacles-free po
 sudo apt install g++ cmake libssl-dev ninja-build
 ```
 
-* Then, once the repository has been cloned into your ROS1 workspace, you can recompile it using `ninja` instead of `gcc`
+* Then, once the repository has been cloned into your ROS1 workspace, you can recompile it using `ninja` instead of `gcc`.
 
 ## Installation
 
@@ -54,13 +54,13 @@ The experiment has been conducted at the LTU facility to verify both the accurac
 
 According to the Ublox F9P documentation and the geographical distance between the reference station and the rover, it is possible to compute the Circular Error Probability (`CEP`) of the adopted system as follows:
 ```bash
-`CEP` = 0.01 [m] + D [m] x 1 [ppm]
+CEP = 0.01 [m] + D [m] x 1 [ppm]
 ```
 where D is the geographical distance between the reference station and the rover, which in our case, is approximately equal to 4000 m; 0.01 is the `CEP` of the Ublox F9P, and 1 is the additional `CEP` in parts per million (ppm) due to the distance between the reference station and the rover.
 
 From the CEP obtained from the previous equation, which in our experimental setup is `CEP` = 1.4 cm, together with the PDOP gathered from the RTK GNSS receiver, it is therefore possible to estimate an approximate Position Error (`P_error`) [cm], as detailed in the following:
 ```bash
-    `P_error` [cm] = `CEP` x `PDOP`
+    P_error [cm] = CEP x PDOP
 ```
 
 ### Preliminary Results
