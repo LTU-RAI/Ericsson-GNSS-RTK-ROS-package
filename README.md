@@ -31,7 +31,11 @@ Finally, the antenna of the GNSS receiver must be located in a obstacles-free po
 sudo apt install g++ cmake libssl-dev ninja-build
 ```
 
-* Then, once the repository has been cloned into your ROS1 workspace, you can recompile it using `ninja` instead of `gcc`.
+* Then, once the repository has been cloned into your ROS1 workspace, you can recompile it using `ninja` instead of `gcc` with the following command:
+```bash
+catkin_make --use-ninja
+```
+* If there are issues compiling, temporarily remove the Ericsson client files folder in the `src/ublox_ros` with name `SUPL-3GPP-LPP-client-main`, clean the workspace and recompile it as mentioned before.
 
 ## Installation
 
@@ -43,6 +47,10 @@ sudo bash gnss_rtk_exec.sh
 ```
 
 * In a few seconds, the client will connect to Ericsson ground station and then the ROS publisher will start publishing the positioning informations in the proper ROS topics.
+
+## Note
+
+There might be a bug in the altitude, which might be divided or multiplied by 10. Therefore, if you need the altitude, remember to check and properly divide or multiply it by 10.
 
 ## Performance
 
@@ -92,4 +100,4 @@ As visible from the ECDF of `PDOP`, the overall average `PDOP` is 1.29, very clo
 
 ## Ericsson RTK client
 
-This ROS1 package is based on the following Ericsson GNSS RTK client [Ericsson GNSS RTK client](https://xbplib.readthedocs.io/en/latest/)
+This ROS1 package is based on the following Ericsson GNSS RTK client [Ericsson GNSS RTK client](https://xbplib.readthedocs.io/en/latest/).
