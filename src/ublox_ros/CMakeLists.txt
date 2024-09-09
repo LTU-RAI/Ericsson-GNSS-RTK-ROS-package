@@ -13,15 +13,18 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(CATKIN_DEPENDS ublox_msg)
 
 
-set(UbxNavPvt_DIR ublox_client/receiver/ublox)
-set(OPTIONS_DIR ublox_client/examples/ublox)
+set(ublox_DIR SUPL-3GPP-LPP-client-main)
+
+
+set(UbxNavPvt_DIR ${ublox_DIR}/receiver/ublox)
+set(OPTIONS_DIR ${ublox_DIR}/examples/ublox)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 
 include_directories(${catkin_INCLUDE_DIRS} include)
 
 
-add_subdirectory("ublox_client")
+add_subdirectory(${ublox_DIR})
 
 
 add_library(ubx_nav_pvt_ros STATIC include/ublox_ros/ubx_nav_pvt_ros.hpp  
