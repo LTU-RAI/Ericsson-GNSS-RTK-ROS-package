@@ -1,17 +1,27 @@
 cmake_minimum_required(VERSION 3.5)
+project(ublox_ros)
+
+# Default to C99
+if(NOT CMAKE_C_STANDARD)
+  set(CMAKE_C_STANDARD 99)
+endif()
+
+# Default to C++14
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 14)
+endif()
+
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
+
+# find dependencies
+find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(ublox_msg REQUIRED)
 
 
-project(ublox_ros LANGUAGES C CXX)
-
-
-find_package(catkin REQUIRED COMPONENTS
-  roscpp
-  ublox_msg
-)
-
-
-catkin_package(CATKIN_DEPENDS ublox_msg)
-
+#### ERICSSON RELATED 
 
 set(ublox_DIR SUPL-3GPP-LPP-client-main)
 
@@ -36,16 +46,36 @@ target_link_libraries(ubx_nav_pvt_ros PRIVATE args receiver::ublox dependency::i
 set_target_properties(ubx_nav_pvt_ros PROPERTIES LINKER_LANGUAGE CXX)
 
 
-add_executable(ublox_ros_publisher 
-      src/ublox_ros_publisher.cpp 
+add_executable(publisher 
+      src/publisher.cpp 
      ${OPTIONS_DIR}/options.cpp
      ${UbxNavPvt_DIR}/ubx_nav_pvt.cpp
     )
-target_include_directories(ublox_ros_publisher PRIVATE ${OPTIONS_DIR}/ ${UbxNavPvt_DIR}/include/receiver/ublox/)
-target_include_directories(ublox_ros_publisher PUBLIC ${catkin_INCLUDE_DIRS} ${roscpp_INCLUDE_DIRS} include/ublox_ros)
-target_link_libraries(ublox_ros_publisher PRIVATE args receiver::ublox dependency::interface utility) 
-target_link_libraries(ublox_ros_publisher PUBLIC ${roscpp_LIBRARIES} ubx_nav_pvt_ros)
+ament_target_dependencies(publisher rclcpp ublox_msg)
+target_include_directories(publisher PRIVATE ${OPTIONS_DIR}/ ${UbxNavPvt_DIR}/include/receiver/ublox/)
+target_include_directories(publisher PUBLIC  include/ublox_ros)
 
-add_executable(ublox_ros_subscriber src/ublox_ros_subscriber.cpp)
-target_include_directories(ublox_ros_subscriber PUBLIC ${catkin_INCLUDE_DIRS} ${roscpp_INCLUDE_DIRS})
-target_link_libraries(ublox_ros_subscriber PUBLIC ${roscpp_LIBRARIES})
+target_link_libraries(publisher PRIVATE args receiver::ublox dependency::interface utility) 
+target_link_libraries(publisher PUBLIC  ubx_nav_pvt_ros)
+
+add_executable(subscriber src/subscriber.cpp)
+ament_target_dependencies(subscriber rclcpp ublox_msg)
+
+####
+
+
+if(BUILD_TESTING)
+  ament_lint_auto_find_test_dependencies()
+endif()
+
+
+
+
+install(TARGETS
+  publisher
+  subscriber
+  DESTINATION lib/${PROJECT_NAME})
+
+
+
+ament_package()

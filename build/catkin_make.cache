@@ -1,2 +1,0 @@
-ublox_msg:ublox_ros
--DCATKIN_DEVEL_PREFIX=/home/emanuele/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/emanuele/catkin_ws/install -G Ninja

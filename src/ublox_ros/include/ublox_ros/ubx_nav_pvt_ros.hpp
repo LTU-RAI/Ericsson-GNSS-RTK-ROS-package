@@ -1,10 +1,10 @@
 #pragma once 
-#include <ros/ros.h>
+#include "rclcpp/rclcpp.hpp"
 #include <receiver/ublox/ubx_nav_pvt.hpp>
 #include <receiver/ublox/receiver.hpp>
 #include <receiver/ublox/message.hpp>
 #include <receiver/ublox/ubx_nav_pvt.hpp>
-#include <ublox_msg/UbxNavPvt.h>
+#include <ublox_msg/msg/UbxNavPvt.hpp>
 
 
 namespace ublox_ros {
@@ -19,7 +19,7 @@ namespace ublox_ros {
 
 
     private: 
-      ublox_msg::UbxNavPvt msg ; 
+      ublox_msg::UbxNavPvt msg_ ; 
   }; 
 }
 

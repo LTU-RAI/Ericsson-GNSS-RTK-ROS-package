@@ -1,30 +1,43 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.5)
 project(ublox_msg)
 
+# Default to C99
+if(NOT CMAKE_C_STANDARD)
+  set(CMAKE_C_STANDARD 99)
+endif()
 
+# Default to C++14
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 14)
+endif()
 
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
 
-find_package(catkin REQUIRED COMPONENTS
-  message_generation
+# find dependencies
+find_package(ament_cmake REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
+
+rosidl_generate_interfaces(${PROJECT_NAME}
+  msg/MyCustomMessage.msg
+  msg/Flags.msg
+  msg/Flags2.msg
+  msg/Flags3.msg
+  msg/Valid.msg
+  msg/UbxNavPvt.msg
 )
 
+ament_export_dependencies(rosidl_default_runtime)
 
 
-add_message_files(
-  FILES
-  Flags.msg
-  Flags2.msg
-  Flags3.msg
-  Valid.msg
-  UbxNavPvt.msg
-)
 
 
-generate_messages()
 
-catkin_package(CATKIN_DEPENDS message_runtime)
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  ament_lint_auto_find_test_dependencies()
+endif()
 
-
-include_directories(
-  ${catkin_INCLUDE_DIRS}
-)
+ament_package()
