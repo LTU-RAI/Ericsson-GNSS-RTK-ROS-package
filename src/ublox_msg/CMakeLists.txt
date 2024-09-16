@@ -21,12 +21,11 @@ find_package(std_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
-  msg/MyCustomMessage.msg
-  msg/Flags.msg
-  msg/Flags2.msg
-  msg/Flags3.msg
-  msg/Valid.msg
-  msg/UbxNavPvt.msg
+  "msg/Flags.msg"
+  "msg/Flags2.msg"
+  "msg/Flags3.msg"
+  "msg/Valid.msg"
+  "msg/UbxNavPvt.msg"
 )
 
 ament_export_dependencies(rosidl_default_runtime)

@@ -1,4 +1,5 @@
 .vscode/
-build/
+build/*
+build/.built_by
 install/
 log/

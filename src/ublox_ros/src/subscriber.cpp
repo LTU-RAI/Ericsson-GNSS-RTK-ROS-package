@@ -1,26 +1,36 @@
 #include "rclcpp/rclcpp.hpp"
-#include <ublox_msg/msg/UbxNavPvt.hpp>
+#include <ublox_msg/msg/ubx_nav_pvt.hpp>
 
 
 #define TOPIC_NAME "/ublox_client"
 
 
-void chatterCallback(const ublox_msg::UbxNavPvt& msg)
+
+class UbloxSubscriber : public rclcpp::Node
 {
-  ROS_INFO("I heard: year %d month %d day %d hour %d min %d sec %d", msg.year, msg.month, msg.day, msg.hour, msg.min, msg.sec);
-  // own code here ! 
-}
+public:
+    UbloxSubscriber() : Node("ublox_subscriber")
+    {
+        // Create a subscription to the topic with the custom message type
+        subscription_ = this->create_subscription<ublox_msg::msg::UbxNavPvt>(
+            TOPIC_NAME, 10, std::bind(&UbloxSubscriber::topic_callback, this, std::placeholders::_1));
+    }
 
-int main(int argc, char **argv)
+private:
+    void topic_callback(const ublox_msg::msg::UbxNavPvt::SharedPtr msg) const
+    {
+      RCLCPP_INFO(this->get_logger(), "I heard: year %d month %d day %d hour %d min %d sec %d", msg->year, msg->month, msg->day, msg->hour, msg->min, msg->sec);
+    }
+
+    rclcpp::Subscription<ublox_msg::msg::UbxNavPvt>::SharedPtr subscription_;
+};
+
+
+
+int main(int argc, char *argv[])
 {
-  ros::init(argc, argv, "ublox_ros_subscriber");
-
-  ros::NodeHandle n;
-
-
-  ros::Subscriber sub = n.subscribe(TOPIC_NAME, 1, chatterCallback);
-
-  ros::spin();
-
-  return 0;
+    rclcpp::init(argc, argv);
+    rclcpp::spin(std::make_shared<UbloxSubscriber>());
+    rclcpp::shutdown();
+    return 0;
 }

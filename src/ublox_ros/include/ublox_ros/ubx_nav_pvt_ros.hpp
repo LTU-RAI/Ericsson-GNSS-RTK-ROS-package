@@ -4,7 +4,7 @@
 #include <receiver/ublox/receiver.hpp>
 #include <receiver/ublox/message.hpp>
 #include <receiver/ublox/ubx_nav_pvt.hpp>
-#include <ublox_msg/msg/UbxNavPvt.hpp>
+#include <ublox_msg/msg/ubx_nav_pvt.hpp>
 
 
 namespace ublox_ros {
@@ -15,11 +15,11 @@ namespace ublox_ros {
 
       void set(const receiver::ublox::raw::NavPvt& msg); 
 
-      ublox_msg::UbxNavPvt get() const ;
+      ublox_msg::msg::UbxNavPvt get() const ;
 
 
     private: 
-      ublox_msg::UbxNavPvt msg_ ; 
+      ublox_msg::msg::UbxNavPvt msg_ ; 
   }; 
 }
 

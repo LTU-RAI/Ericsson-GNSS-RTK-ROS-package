@@ -1,13 +1,4 @@
-#include "rclcpp/rclcpp.hpp"
-#include <receiver/ublox/ubx_nav_pvt.hpp>
-#include <receiver/ublox/receiver.hpp>
-#include <receiver/ublox/message.hpp>
-#include <receiver/ublox/ubx_nav_pvt.hpp>
-
 #include <ublox_ros/ubx_nav_pvt_ros.hpp>
-#include <ublox_msg/msg/UbxNavPvt.hpp>
-
-
 
 
 
@@ -134,4 +125,4 @@ void ublox_ros::UbxNavPvt::set(const receiver::ublox::raw::NavPvt& msg) {
     msg_.mag_acc = msg.mag_dec ;  
 }
 
-ublox_msg::UbxNavPvt ublox_ros::UbxNavPvt::get() const { return msg ;}
+ublox_msg::msg::UbxNavPvt ublox_ros::UbxNavPvt::get() const { return msg_ ;}

@@ -33,7 +33,7 @@ sudo apt install g++ cmake libssl-dev ninja-build
 
 * Then, once the repository has been cloned into your ROS1 workspace, you can recompile it using `ninja` instead of `gcc` with the following command:
 ```bash
-colcon build --packges-select ublox_msg
+colcon build --packages-select ublox_msg
 colcon build --packages-select ublox_ros --cmake-args -G Ninja
 ```
 * If there are issues compiling, temporarily remove the Ericsson client files folder in the `src/ublox_ros` with name `SUPL-3GPP-LPP-client-main`, clean the workspace and recompile it as mentioned before.

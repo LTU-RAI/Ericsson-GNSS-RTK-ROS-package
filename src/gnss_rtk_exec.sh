@@ -10,4 +10,4 @@ gnome-terminal -- bash -c "cd ~/Ericsson-GNSS-RTK-ROS-package/src/ublox_ros/SUPL
 sleep 10
 
 #Start RTK receiver client to get fused position
-gnome-terminal -- bash -c "cd ~/Ericsson-GNSS-RTK-ROS-package; source ~/.bashrc; source devel/setup.sh; rosrun ublox_ros ublox_ros_publisher --serial=/dev/ttyACM0; exec bash"
+gnome-terminal -- bash -c "cd ~/Ericsson-GNSS-RTK-ROS-package; source ~/.bashrc; source install/setup.sh; ros2 run ublox_ros publisher --serial=/dev/ttyACM0 ; exec bash"

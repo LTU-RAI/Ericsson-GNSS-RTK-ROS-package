@@ -23,57 +23,49 @@ find_package(ublox_msg REQUIRED)
 
 #### ERICSSON RELATED 
 
+
+include_directories(include)
+
+
 set(ublox_DIR SUPL-3GPP-LPP-client-main)
 
+add_subdirectory(${ublox_DIR})
 
 set(UbxNavPvt_DIR ${ublox_DIR}/receiver/ublox)
 set(OPTIONS_DIR ${ublox_DIR}/examples/ublox)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 
-include_directories(${catkin_INCLUDE_DIRS} include)
-
-
-add_subdirectory(${ublox_DIR})
-
-
-add_library(ubx_nav_pvt_ros STATIC include/ublox_ros/ubx_nav_pvt_ros.hpp  
-            src/ubx_nav_pvt_ros.cpp ${roscpp_LIBRARIES}  
-            ${UbxNavPvt_DIR}/include/receiver/ublox)
-target_include_directories(ubx_nav_pvt_ros PUBLIC include/ublox_ros 
-             ${roscpp_INCLUDE_DIRS} ${catkin_INCLUDE_DIRS} )
-target_link_libraries(ubx_nav_pvt_ros PRIVATE args receiver::ublox dependency::interface utility ) 
+add_library(ubx_nav_pvt_ros STATIC src/ubx_nav_pvt_ros.cpp   
+            ${UbxNavPvt_DIR}/include/receiver/ublox
+              )
+target_link_libraries(ubx_nav_pvt_ros args receiver::ublox dependency::interface utility ) 
+ament_target_dependencies(ubx_nav_pvt_ros rclcpp ublox_msg)
 set_target_properties(ubx_nav_pvt_ros PROPERTIES LINKER_LANGUAGE CXX)
 
 
 add_executable(publisher 
       src/publisher.cpp 
      ${OPTIONS_DIR}/options.cpp
-     ${UbxNavPvt_DIR}/ubx_nav_pvt.cpp
-    )
-ament_target_dependencies(publisher rclcpp ublox_msg)
-target_include_directories(publisher PRIVATE ${OPTIONS_DIR}/ ${UbxNavPvt_DIR}/include/receiver/ublox/)
-target_include_directories(publisher PUBLIC  include/ublox_ros)
+     ${UbxNavPvt_DIR}/ubx_nav_pvt.cpp)
+ament_target_dependencies(publisher rclcpp ublox_msg )
+target_include_directories(publisher PUBLIC ${OPTIONS_DIR}/ ${UbxNavPvt_DIR}/include/receiver/ublox/)
+target_link_libraries(publisher args receiver::ublox dependency::interface utility ubx_nav_pvt_ros) 
 
-target_link_libraries(publisher PRIVATE args receiver::ublox dependency::interface utility) 
-target_link_libraries(publisher PUBLIC  ubx_nav_pvt_ros)
 
 add_executable(subscriber src/subscriber.cpp)
-ament_target_dependencies(subscriber rclcpp ublox_msg)
+ament_target_dependencies(subscriber 
+  rclcpp ublox_msg 
+  )
+
 
 ####
-
-
-if(BUILD_TESTING)
-  ament_lint_auto_find_test_dependencies()
-endif()
-
-
 
 
 install(TARGETS
   publisher
   subscriber
+  ubx_nav_pvt_ros
   DESTINATION lib/${PROJECT_NAME})
 
 
