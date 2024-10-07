@@ -39,14 +39,17 @@ catkin_make --use-ninja
 
 ## Installation
 
-* If there is no need to recompile the ROS1 package, it is just possible to clone this repository in your ROS1 workspace;
+* If there is no need to recompile the ROS1/2 package, it is just possible to clone this repository in your ROS1/2 workspace;
 
 * Once cloned, connect the GNSS RTK module and then lunch the script in the main folder:
 ```bash
 sudo bash gnss_rtk_exec.sh
 ```
 
-* In a few seconds, the client will connect to Ericsson ground station and then the ROS publisher will start publishing the positioning informations in the proper ROS topics.
+* In a few seconds, the client will connect to Ericsson ground station and then the ROS publisher will start publishing the positioning informations in the proper ROS topic:
+```bash
+/ublox_client
+```
 
 ## Note
 
