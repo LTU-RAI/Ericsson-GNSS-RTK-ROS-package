@@ -1,8 +1,8 @@
-# GNSS RTK ROS1 Package for Ublox F9P with Ericsson stations
+# GNSS RTK ROS1/2 Package for Ublox F9P with Ericsson stations
 
 Authors: [Emanuele Pagliari](https://github.com/Palia95) and  [Yosri Fersi](https://github.com/Yosri-Fersi)
 
-The following ROS1 package enables the usage of GNSS RTK with GNSS corrections provided by the Ericsson base stations available in Sweden. The package has been built to be used with the Ublox F9P RTK GNSS receiver and needs an internet connection in order to reach the base stations to retrieve the corrections.
+The following ROS1/2 package enables the usage of GNSS RTK with GNSS corrections provided by the Ericsson base stations available in Sweden. The package has been built to be used with the Ublox F9P RTK GNSS receiver and needs an internet connection in order to reach the base stations to retrieve the corrections. ROS2 package is available in the ROS2 branch.
 
 ## GNSS RTK architecture
 
