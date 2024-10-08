@@ -103,4 +103,4 @@ As visible from the ECDF of `PDOP`, the overall average `PDOP` is 1.29, very clo
 
 ## Ericsson RTK client
 
-This ROS1 package is based on the following Ericsson GNSS RTK client [Ericsson GNSS RTK client]([https://xbplib.readthedocs.io/en/latest/](https://github.com/Ericsson/SUPL-3GPP-LPP-client).
+This ROS1 package is based on the following Ericsson GNSS RTK client [Ericsson GNSS RTK client]([https://github.com/Ericsson/SUPL-3GPP-LPP-client]).
